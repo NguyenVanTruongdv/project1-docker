@@ -30,20 +30,25 @@ services:
         condition: service_healthy
 
   backend:
+    image: student-backend       # ⭐ CHỈ ĐỊNH TÊN IMAGE
     build: ./backend
     container_name: student-backend
     ports:
-      - "4000:4000"
+      - "4000:4000" 
+      # muốn đổi thì đổi ở trước. 
+      # docker compose down
+      #docker compose up --build
+  
     depends_on:
       mysql:
         condition: service_healthy
 
   frontend:
+    image: student-frontend      # ⭐ CHỈ ĐỊNH TÊN IMAGE
     build: ./frontend
     container_name: student-frontend
     ports:
       - "5173:5173"
- 
     depends_on:
       backend:
         condition: service_started
